@@ -59,22 +59,22 @@ const StatsContainer = ({ playerData, className }: Props) => {
   const totalGames = playerData?.games ? Object.keys(playerData.games).length : 0;
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="font-semibold">TILASTOJA</h1>
-      <div className="flex">
-        <div className="flex flex-col items-center mr-5">
+      <div className="flex flex-wrap justify-around md:justify-start md:flex-nowrap gap-10 whitespace-nowrap">
+        <div className="flex w-fit flex-col items-center">
           <p className="text-4xl font-bold">{totalGames}</p>
           <p className="text-sm">Pelattu</p>
         </div>
-        <div className="flex flex-col items-center mr-5">
+        <div className="flex w-fit flex-col items-center">
           <p className="text-4xl font-bold">{winPercentage()}</p>
           <p className="text-sm">Voitto %</p>
         </div>
-        <div className="flex flex-col items-center mr-5">
+        <div className="flex w-fit flex-col items-center">
           <p className="text-4xl font-bold">{currentStreak()}</p>
           <p className="text-sm">Voittoputki</p>
         </div>
-        <div className="flex flex-col items-center mr-5">
+        <div className="flex w-fit flex-col items-center">
           <p className="text-4xl font-bold">{longestStreak()}</p>
           <p className="text-sm">Pisin voittoputki</p>
         </div>

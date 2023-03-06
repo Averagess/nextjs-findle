@@ -9,7 +9,11 @@ interface Props {
 
 const TutorialModal = ({ toggleTutorial, className }: Props) => {
   return (
-    <div className={`container animate-rise relative place-self-center bg-neutral-800 p-10 rounded-xl h-[80vh] text-white overflow-y-auto`}>
+    <div className={`
+      container animate-rise relative
+      place-self-center bg-white dark:bg-neutral-800 dark:text-white
+      p-10 rounded-xl h-[80vh] text-black
+      overflow-y-auto`}>
       <h1 className="text-2xl md:text-4xl font-bold">Kuinka peli toimii?</h1>
       <CloseButton className="absolute right-0 top-0 mt-2 mr-2" onClick={toggleTutorial} />
       <ul className="list-disc m-4 text-sm md:text-lg">

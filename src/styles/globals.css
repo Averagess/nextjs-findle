@@ -36,7 +36,7 @@
 @keyframes flip-gray {
   0% {
     transform: rotateY(0deg);
-    @apply bg-neutral-700;
+    @apply bg-neutral-600;
     @apply bg-opacity-60
   }
   50% {
@@ -44,7 +44,7 @@
   }
   100% {
     transform: rotateY(360deg);
-    @apply bg-neutral-700;
+    @apply bg-neutral-600;
   }
 }
 
@@ -70,4 +70,21 @@
   100% {
     @apply bg-orange-400;
   }
+}
+
+@keyframes to-gray {
+  0% {
+    @apply bg-neutral-600;
+  }
+  99% {
+    @apply bg-neutral-600;
+  }
+  100% {
+    @apply bg-neutral-600;
+  }
+}
+
+@keyframes to-transparent {
+  0% { opacity : 1 }
+  100% { opacity : 0 }
 }

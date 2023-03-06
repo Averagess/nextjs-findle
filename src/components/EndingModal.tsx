@@ -18,11 +18,8 @@ const EndingModal = ({
   correctWord,
 }: Props) => {
   const guessedRight = guesses[guesses.length - 1] === correctWord;
-  // const Header = guessedRight
-  //   ? `Oikein! Päivän sana oli ${correctWord}`
-  //   : `Parempi onni ensi kerralla. Päivän sana oli ${correctWord}`;
   const Header = guessedRight ? "Oikein!" : "Väärin.";
-  const Subheader = `Päivän sana oli ${correctWord}`;
+  const Subheader = `Päivän sana oli ${correctWord}.`;
 
   const boardToClipboard = () => {
     const board = guesses;
@@ -45,22 +42,23 @@ const EndingModal = ({
 
   return (
     <div
-      className={`container relative grid animate-rise place-self-center rounded-xl bg-neutral-800 p-10 text-white`}
+      className={`relative w-screen md:w-[75vw] lg:w-[50vw] xl:w-[35vw] grid animate-rise place-self-center rounded-xl bg-neutral-800 p-10 text-white`}
     >
       <CloseButton
         onClick={toggleEnding}
         className="absolute right-0 top-0 m-5"
       />
-      <div className="flex w-1/2 flex-col place-self-center self-center">
+      <div className="flex w-5/6 flex-col ">
         <h1
-          className={`font-semibold text-2xl ${
-            guessedRight ? "text-green-500" : "text-gray-500"
-          }`}
+          className={`
+          font-semibold text-2xl 
+          ${guessedRight ? "text-green-500" : "text-gray-500"}
+          `}
         >
           {Header}
         </h1>
-        <h2 className="max-w-[75%] text-2xl">{Subheader}</h2>
-        <div className="mt-5 flex w-fit flex-col">
+        <h2 className="whitespace-nowrap text-2xl">{Subheader}</h2>
+        <div className="mt-5 flex w-full flex-col">
           <StatsContainer playerData={playerData} />
           <button
             onClick={boardToClipboard}

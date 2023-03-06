@@ -8,12 +8,22 @@ import Keyboard from "@/components/Keyboard";
 import BackgroundBlur from "@/components/BackgroundBlur";
 import TutorialModal from "@/components/TutorialModal";
 import EndingModal from "@/components/EndingModal";
+import SettingsModal from "@/components/SettingsModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "next-themes";
+import { NextPageContext } from "next";
 
-export const getServerSideProps = () => {
-  const randomWord = words[Math.floor(Math.random() * words.length)];
+export const getServerSideProps = (context: NextPageContext) => {
+  const keys = Object.keys(words);
+  const randomWord = keys[Math.floor(Math.random() * keys.length)];
+  console.log("Locale in getServerSideProps: ", context.locale )
+
   return {
     props: {
       word: randomWord,
+      words,
+      locale: context.locale,
     },
   };
 };
@@ -24,30 +34,49 @@ export interface PlayerData {
       word: string;
       guesses: string[];
     };
-  }
+  };
 }
 
-export default function Home({ word }: { word: string }) {
+const addNoti = (text: string, type: "default" | "error") => {
+  toast(text, {
+    type,
+  });
+};
+
+export default function Home({
+  word,
+  words,
+  locale
+}: {
+  word: string;
+  words: { [key: string]: string };
+  locale: string;
+}) {
   const [guess, setGuess] = useState<string>("");
   const [guesses, setGuesses] = useState<string[]>([]);
-  const [tutorial, setTutorial] = useState<boolean>(false);
-  const [gameOver, setGameOver] = useState<boolean>(false);
-  const [showEnding, setShowEnding] = useState<boolean>(false);
+  const [tutorial, setTutorial] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [showEnding, setShowEnding] = useState(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
 
+  console.log("locale:", locale);
+
   useEffect(() => {
+    setMounted(true);
     const playerData = localStorage.getItem("playerData");
     if (playerData) {
       setPlayerData(JSON.parse(playerData));
     } else setPlayerData({ games: {} });
-  }, [])
+  }, []);
 
   useEffect(() => {
     console.log("Player data: ", playerData);
     if (playerData) {
       localStorage.setItem("playerData", JSON.stringify(playerData));
     }
-  }, [playerData])
+  }, [playerData]);
 
   const handleKeyDown = (keyPressed: string) => {
     if (gameOver) return;
@@ -58,12 +87,13 @@ export default function Home({ word }: { word: string }) {
       setGuess((prev) => prev + key);
     } else if (key === "BACKSPACE" || key === "BACK") {
       setGuess((prev) => prev.slice(0, -1));
-    } else if (
-      (key === "ENTER" || key === "RETURN") &&
-      guess.length === word.length
-    ) {
-      setGuess("");
-      setGuesses((prev) => [...prev, guess]);
+    } else if (key === "ENTER" || key === "RETURN") {
+      if (guess.length === word.length) {
+        if (!words[guess]) return addNoti("Sanaa ei ole listassa", "default");
+
+        setGuess("");
+        setGuesses((prev) => [...prev, guess]);
+      } else addNoti("Sana on liian lyhyt", "default");
     }
   };
 
@@ -85,21 +115,21 @@ export default function Home({ word }: { word: string }) {
   ) {
     console.log("game over");
     setGameOver(true);
-    setShowEnding(true);
+    setTimeout(() => setShowEnding(true), 3000);
 
     // Saving the game data to local storage
     const playerData = localStorage.getItem("playerData");
     if (playerData) {
-      const parsed: PlayerData = JSON.parse(playerData)
+      const parsed: PlayerData = JSON.parse(playerData);
       const data = {
         games: {
           ...parsed.games,
           [Date.now()]: {
             word,
-            guesses
-          }
-        }
-      }
+            guesses,
+          },
+        },
+      };
       setPlayerData(data);
     }
   }
@@ -114,15 +144,37 @@ export default function Home({ word }: { word: string }) {
       </Head>
       <Layout>
         <Navbar
-          className="fixed"
           toggleTutorial={() => setTutorial(!tutorial)}
         />
+        {mounted && (
+          <ToastContainer
+            className="mt-16"
+            position="top-center"
+            autoClose={5000}
+            limit={5}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            pauseOnHover={false}
+            theme={theme === "dark" ? "dark" : "light"}
+          />
+        )}
         <main
-          className="grid h-screen w-screen bg-neutral-900"
+          className="grid h-screen w-screen bg-[#f0f0f0] dark:bg-neutral-800"
           onKeyDown={(e) => handleKeyDown(e.key)}
           tabIndex={0}
         >
-          <div className="grid place-items-center place-self-center rounded-xl bg-neutral-800 p-6 shadow-2xl w-[99vw] sm:w-[60vw] md:w-[50vw] lg:w-[40vw]">
+          <div
+            className={`
+            grid w-[99vw]
+            place-items-center place-self-center
+            rounded-xl bg-[#cecece]
+            shadow-neumorphism dark:bg-neutral-800
+            dark:shadow-neumorphism-dark sm:w-[60vw] md:w-[50vw] lg:w-[40vw]`}
+          >
             <h1 className="text-white">{word}</h1>
             <h2 className="text-white">{gameOver ? "true" : "false"}</h2>
             {PastGuesses}
@@ -133,6 +185,7 @@ export default function Home({ word }: { word: string }) {
               handleKeyDown={handleKeyDown}
               guesses={guesses}
               correctWord={word}
+              gameOver={gameOver}
             />
             {gameOver && (
               <button
@@ -142,7 +195,7 @@ export default function Home({ word }: { word: string }) {
                   border-2 border-black
                 bg-blue-700 p-2 text-white
                 hover:bg-blue-600
-                  active:ring-2 active:bg-blue-700
+                  active:bg-blue-700 active:ring-2
               `}
               >
                 Näytä tulokset
@@ -158,7 +211,10 @@ export default function Home({ word }: { word: string }) {
             </BackgroundBlur>
           )}
           {showEnding && (
-            <BackgroundBlur className="fixed inset-0 z-10" toggleBG={() => setShowEnding(!showEnding)}>
+            <BackgroundBlur
+              className="fixed inset-0 z-10"
+              toggleBG={() => setShowEnding(!showEnding)}
+            >
               <EndingModal
                 playerData={playerData}
                 guesses={guesses}
