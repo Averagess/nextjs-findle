@@ -1,3 +1,4 @@
+import translations from "@/lib/translations";
 import { PlayerData } from "@/pages/index";
 import CloseButton from "./CloseButton";
 import StatsContainer from "./StatsContainer";
@@ -8,6 +9,7 @@ interface Props {
   guesses: string[];
   correctWord: string;
   playerData: PlayerData | null;
+  locale: "fi" | "en";
 }
 
 const EndingModal = ({
@@ -16,10 +18,11 @@ const EndingModal = ({
   className,
   guesses,
   correctWord,
+  locale
 }: Props) => {
   const guessedRight = guesses[guesses.length - 1] === correctWord;
-  const Header = guessedRight ? "Oikein!" : "Väärin.";
-  const Subheader = `Päivän sana oli ${correctWord}.`;
+  const Header = guessedRight ? translations.endingCorrectHeader[locale] : translations.endingWrongHeader[locale];
+  const Subheader = `${translations.endingSubHeader[locale]} ${correctWord}.`;
 
   const boardToClipboard = () => {
     const board = guesses;
@@ -59,7 +62,7 @@ const EndingModal = ({
         </h1>
         <h2 className="whitespace-nowrap text-2xl">{Subheader}</h2>
         <div className="mt-5 flex w-full flex-col">
-          <StatsContainer playerData={playerData} />
+          <StatsContainer locale={locale} playerData={playerData} />
           <button
             onClick={boardToClipboard}
             className={`
@@ -70,7 +73,7 @@ const EndingModal = ({
           hover:bg-sky-400
           active:bg-sky-500 active:ring-2`}
           >
-            Jaa kaverille
+            {translations.share[locale]}
           </button>
         </div>
       </div>
