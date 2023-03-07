@@ -1,8 +1,11 @@
+import translations from "@/lib/translations";
+
 interface Props {
   onClick: () => void;
+  locale: "fi" | "en";
 }
 
-const TutorialButton = ({ onClick }: Props) => {
+const TutorialButton = ({ onClick, locale }: Props) => {
   return (
     <div
       onClick={onClick}
@@ -14,7 +17,7 @@ const TutorialButton = ({ onClick }: Props) => {
       bg-gray-800 bg-opacity-25
         text-3xl text-black hover:cursor-pointer
       dark:bg-gray-500 dark:bg-opacity-25 dark:text-white `}
-      title="Ohjeita"
+      title={translations.tutorialTooltip[locale]}
     >
       <p>?</p>
     </div>
