@@ -107,7 +107,7 @@ const StatsContainer = ({ playerData, className, locale }: Props) => {
         </div>
       </div>
       <hr className="my-5" />
-      <h2 className="font-semibold">GUESS DISTRIBUTION</h2>
+      <h2 className="font-semibold">{translations.endingGuessDistribution[locale]}</h2>
       <div className="flex flex-col gap-2">
         {Object.keys(guessDistributions).map((key, index) => {
           return (

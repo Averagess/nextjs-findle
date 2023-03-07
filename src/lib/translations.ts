@@ -87,6 +87,10 @@ const translations = {
   localeSwitchTitle: {
     "en": "Change language",
     "fi": "Vaihda kieltä"
+  },
+  endingGuessDistribution: {
+    "en": "GUESS DISTRIBUTION",
+    "fi": "ARVAUSTEN JAKAUTUMINEN"
   }
 
   
