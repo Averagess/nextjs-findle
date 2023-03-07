@@ -17,6 +17,7 @@ const Keyboard = ({
 }: Props) => {
   const correctChars: { [key: string]: string } = {};
   const almostChars: { [key: string]: string } = {};
+  const incorrectChars: { [key: string]: string } = {};
 
   guesses.forEach((guess) => {
     guess.split("").forEach((char, i) => {
@@ -24,6 +25,8 @@ const Keyboard = ({
         correctChars[char] = char;
       } else if (correctWord.includes(char)) {
         almostChars[char] = char;
+      } else {
+        incorrectChars[char] = char;
       }
     });
   });
@@ -35,7 +38,7 @@ const Keyboard = ({
   ]
 
   return (
-    <div className={`flex flex-col w-max gap-1 p-1 ${className}`}>
+    <div className={`flex flex-col w-full gap-1 p-1 ${className}`}>
       {rows.map((row, i) => (
         <KeyboardRow
           key={i}
@@ -43,6 +46,7 @@ const Keyboard = ({
           onClick={(char) => handleKeyDown(char)}
           correctChars={correctChars}
           almostChars={almostChars}
+          incorrectChars={incorrectChars}
           gameOver={gameOver}
         />
       ))}
