@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import translations from "@/lib/translations";
 
-const ThemeSwitch = () => {
+const ThemeSwitch = ({ locale }: { locale: "fi" | "en" }) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -23,7 +24,7 @@ const ThemeSwitch = () => {
     text-black hover:cursor-pointer
     dark:bg-gray-500 dark:bg-opacity-25 dark:text-white "
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      title="Vaihda teemaa"
+      title={translations.themeTooltip[locale]}
     >
       <h1>{icon}</h1>
     </div>
