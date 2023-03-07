@@ -4,10 +4,15 @@ interface Props {
   chars?: string;
   correctWord?: string;
   animate?: boolean;
+  shakeInput?: boolean;
 }
 
-const GuessContainer = ({ correctWord, animate, chars = "" }: Props) => {
-
+const GuessContainer = ({
+  correctWord,
+  animate,
+  shakeInput,
+  chars = "",
+}: Props) => {
   const charBoxes = new Array(5).fill(null).map((_, i) => {
     const currChar = chars[i] ?? "";
     const char = currChar.toUpperCase();
@@ -31,7 +36,6 @@ const GuessContainer = ({ correctWord, animate, chars = "" }: Props) => {
       isAlmost = correctWord.includes(char.toUpperCase());
     }
 
-
     return (
       <div
         key={i}
@@ -40,10 +44,16 @@ const GuessContainer = ({ correctWord, animate, chars = "" }: Props) => {
           m-[1px] grid
           h-12 w-12
           place-items-center rounded-md
-          border-[1px] border-black border-opacity-25
-          bg-opacity-80 dark:bg-opacity-60
-          dark:border-white
-          ${isCorrect ? "bg-green-500" : isAlmost ? "bg-orange-400" : "bg-neutral-400 dark:bg-neutral-700"}
+          border-2 border-white
+        dark:border-opacity-30
+          dark:bg-opacity-60
+          ${
+            isCorrect
+              ? "bg-green-500"
+              : isAlmost
+              ? "bg-orange-400"
+              : "bg-neutral-400 dark:bg-neutral-700"
+          }
           `}
       >
         <p className="text-3xl font-bold text-white">{char}</p>
@@ -51,7 +61,7 @@ const GuessContainer = ({ correctWord, animate, chars = "" }: Props) => {
     );
   });
 
-  return <div className="flex">{charBoxes}</div>;
+  return <div className={`flex ${shakeInput ? "animate-shake": ""}`}>{charBoxes}</div>;
 };
 
 export default GuessContainer;
