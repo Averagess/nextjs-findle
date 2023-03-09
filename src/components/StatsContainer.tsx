@@ -11,13 +11,15 @@ const StatsContainer = ({ playerData, className, locale }: Props) => {
   const winPercentage = () => {
     if (playerData?.games) {
       const games = Object.values(playerData.games);
+      if(!games.length) return 0;
       const wins = games.filter(
         (game) => game.guesses[game.guesses.length - 1] === game.word
       ).length;
       return Math.round((wins / games.length) * 100);
     }
-    return 0;
+    else return 0;
   };
+
 
   const currentStreak = () => {
     if (playerData?.games) {
