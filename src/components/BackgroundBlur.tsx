@@ -7,7 +7,6 @@ interface Props {
 const BackgroundBlur = ({ children, toggleBG, className }: Props) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(e.target, e.currentTarget)
     if (e.target === e.currentTarget) {
       toggleBG();
     }
