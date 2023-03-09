@@ -10,12 +10,14 @@ const CloseButton = ({ onClick, className }: Props) => {
       className={`
         grid h-12 w-12
         place-items-center
-        rounded-md border-2 border-white
+        rounded-md
         cursor-pointer
         active:scale-95 active:bg-neutral-800
+        hover:scale-110
+        transition-all duration-200 ease-in-out
         select-none
         text-xl
-        bg-neutral-900 bg-opacity-50
+        bg-neutral-700 bg-opacity-30
         ${className}
       `}
     >
