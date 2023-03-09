@@ -22,13 +22,32 @@ const BackgroundBlur = dynamic(
 
 export const getServerSideProps = (context: NextPageContext) => {
   const keys = Object.keys(words);
-  const randomWord = keys[Math.floor(Math.random() * keys.length)];
+  const currYear = new Date().getFullYear();
+  const newYearsEve = new Date(currYear, 0, 1);
+
+  const currDate = new Date();
+
+  const timeDiff = currDate.getTime() - newYearsEve.getTime();
+  const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+  const randomWord = keys[diffDays];
   console.log("Locale in getServerSideProps: ", context.locale);
+
+  const nextWordDateMS = new Date(
+    currDate.getFullYear(),
+    currDate.getMonth(),
+    currDate.getDate() + 1,
+    0,
+    0,
+    0,
+    0
+  ).getTime();
 
   return {
     props: {
       word: randomWord,
       words,
+      nextWordDateMS,
       locale: context.locale,
     },
   };
@@ -49,15 +68,14 @@ const addNoti = (text: string, type: "default" | "error") => {
   });
 };
 
-export default function Home({
-  word,
-  words,
-  locale,
-}: {
+interface Props {
   word: string;
   words: { [key: string]: string };
   locale: "fi" | "en";
-}) {
+  nextWordDateMS: number;
+}
+
+export default function Home({ word, words, locale, nextWordDateMS }: Props) {
   const [guess, setGuess] = useState<string>("");
   const [guesses, setGuesses] = useState<string[]>([]);
   const [tutorial, setTutorial] = useState(false);
@@ -72,8 +90,26 @@ export default function Home({
     setMounted(true);
     const playerData = localStorage.getItem("playerData");
     if (playerData) {
-      setPlayerData(JSON.parse(playerData));
+      const parsedData: PlayerData = JSON.parse(playerData);
+      setPlayerData(parsedData);
+      if (!Object.keys(parsedData.games).length) return;
+
+      const gameKeys = Object.keys(parsedData.games);
+      const latestGame = gameKeys[gameKeys.length - 1];
+
+      const solvedDate = new Date(Number(latestGame));
+      const releaseDate = new Date(nextWordDateMS);
+
+      if (
+        solvedDate.getDate() + 1 === releaseDate.getDate() &&
+        solvedDate.getMonth() === releaseDate.getMonth() &&
+        solvedDate.getFullYear() === releaseDate.getFullYear()
+      ) {
+        setGuesses(parsedData.games[Number(latestGame)].guesses);
+        setGameOver(true);
+      }
     } else setPlayerData({ games: {} });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -158,7 +194,11 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Navbar toggleTutorial={() => setTutorial(!tutorial)} locale={locale} />
+        <Navbar
+          toggleTutorial={() => setTutorial(!tutorial)}
+          toggleStatistics={() => setShowEnding(!showEnding)}
+          locale={locale}
+        />
         {mounted && (
           <ToastContainer
             className="mt-16"
@@ -172,21 +212,23 @@ export default function Home({
             pauseOnFocusLoss={false}
             draggable={false}
             pauseOnHover={false}
-            theme={theme === "dark" ? "dark" : "light"}
+            closeButton={false}
+            style={{textAlign: "center"}}
+            theme={theme === "light" ? "light" : "dark"}
           />
         )}
         <main
-          className="grid h-screen w-screen bg-[#f0f0f0] dark:bg-neutral-800"
+          className="grid h-full w-full bg-white dark:bg-neutral-800"
           onKeyDown={(e) => handleKeyDown(e.key)}
           tabIndex={0}
         >
           <div
             className={`
-            flex h-full w-[99vw] flex-col items-center place-self-center
+            flex h-full w-full flex-col items-center place-self-center
             rounded-xl bg-[#cecece]
             pt-8 shadow-neumorphism
             dark:bg-neutral-800 dark:shadow-neumorphism-dark
-            sm:h-max sm:w-[60vw] sm:pt-0 md:w-[50vw] lg:w-[40vw]`}
+            sm:h-max sm:w-[60%] sm:pt-0 md:w-[50%] lg:w-[40%]`}
           >
             <h1 className="text-white">{word}</h1>
             <h2 className="text-white">{gameOver ? "true" : "false"}</h2>
@@ -204,20 +246,6 @@ export default function Home({
               correctWord={word}
               gameOver={gameOver}
             />
-            {gameOver && (
-              <button
-                onClick={() => setShowEnding(!showEnding)}
-                className={`
-                  mt-5 rounded-md
-                  border-2 border-black
-                bg-blue-700 p-2 text-white
-                hover:bg-blue-600
-                  active:bg-blue-700 active:ring-2
-              `}
-              >
-                {translations.showResultsButton[locale]}
-              </button>
-            )}
           </div>
           {tutorial && (
             <BackgroundBlur
@@ -241,6 +269,7 @@ export default function Home({
                 toggleEnding={() => setShowEnding(!showEnding)}
                 correctWord={word}
                 locale={locale}
+                nextWordDateMS={nextWordDateMS}
               />
             </BackgroundBlur>
           )}
