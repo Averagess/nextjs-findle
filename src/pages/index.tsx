@@ -60,6 +60,7 @@ export interface PlayerData {
       guesses: string[];
     };
   };
+  tutorialSeen: boolean;
 }
 
 const addNoti = (text: string, type: "default" | "error") => {
@@ -92,7 +93,11 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
     if (playerData) {
       const parsedData: PlayerData = JSON.parse(playerData);
       setPlayerData(parsedData);
-      if (!Object.keys(parsedData.games).length) return;
+      if(!parsedData.tutorialSeen) {
+        setTutorial(true);
+        setPlayerData({ ...parsedData, tutorialSeen: true })
+        return;
+      } else if(Object.keys(parsedData.games).length === 0) return;
 
       const gameKeys = Object.keys(parsedData.games);
       const latestGame = gameKeys[gameKeys.length - 1];
@@ -108,7 +113,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
         setGuesses(parsedData.games[Number(latestGame)].guesses);
         setGameOver(true);
       }
-    } else setPlayerData({ games: {} });
+    } else setPlayerData({ games: {}, tutorialSeen: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -180,6 +185,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
             guesses,
           },
         },
+        tutorialSeen: parsed.tutorialSeen
       };
       setPlayerData(data);
     }
@@ -225,13 +231,11 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
           <div
             className={`
             flex h-full w-full flex-col items-center place-self-center
-            sm:rounded-xl bg-[#cecece]
-            pt-8 sm:shadow-neumorphism
+            sm:rounded-xl bg-gray-300
+            py-8 sm:shadow-neumorphism
             dark:bg-neutral-800 sm:dark:shadow-neumorphism-dark
-            sm:h-max sm:w-[60%] sm:pt-0 md:w-[50%] lg:w-[40%]`}
+            sm:h-max sm:w-[60%] md:w-[50%] lg:w-[40%]`}
           >
-            <h1 className="text-white">{word}</h1>
-            <h2 className="text-white">{gameOver ? "true" : "false"}</h2>
             <div>
               {PastGuesses}
               {guesses.length < 5 && (
