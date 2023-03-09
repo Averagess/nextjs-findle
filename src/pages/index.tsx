@@ -225,9 +225,9 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
           <div
             className={`
             flex h-full w-full flex-col items-center place-self-center
-            rounded-xl bg-[#cecece]
-            pt-8 shadow-neumorphism
-            dark:bg-neutral-800 dark:shadow-neumorphism-dark
+            sm:rounded-xl bg-[#cecece]
+            pt-8 sm:shadow-neumorphism
+            dark:bg-neutral-800 sm:dark:shadow-neumorphism-dark
             sm:h-max sm:w-[60%] sm:pt-0 md:w-[50%] lg:w-[40%]`}
           >
             <h1 className="text-white">{word}</h1>

@@ -38,7 +38,7 @@ const KeyboardRow = ({
           md:h-15 h-12
           min-w-fit
           shrink-1 rounded-md border-2 border-white
-          bg-neutral-700 bg-opacity-60
+          bg-neutral-400 dark:bg-neutral-700 dark:bg-opacity-60
           font-semibold text-white
           active:bg-neutral-600 dark:border-opacity-30
           ${char.length > 4 && "px-2 text-xs"}
