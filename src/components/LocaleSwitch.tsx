@@ -11,9 +11,9 @@ const LocaleSwitch = ({ locale }: { locale: "fi" | "en" }) => {
     <select
       className="
           h-10 border-2 border-white bg-gray-800
-          bg-opacity-25 text-black dark:border-black
-          dark:bg-gray-500 dark:bg-opacity-25 dark:text-white
-          rounded-lg"
+          bg-opacity-25 text-white dark:border-black
+          dark:bg-gray-500 dark:bg-opacity-25 dark:text-black
+          rounded-lg px-2 "
       title={translations.localeSwitchTitle.en}
       onChange={handleChange}
       value={locale}
