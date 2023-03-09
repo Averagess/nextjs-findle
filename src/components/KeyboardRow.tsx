@@ -36,16 +36,16 @@ const KeyboardRow = ({
         disabled={gameOver}
         className={`
           md:h-15 h-12
-          w-7 min-w-fit
+          min-w-fit
           shrink-1 rounded-md border-2 border-white
           bg-neutral-700 bg-opacity-60
           font-semibold text-white
           active:bg-neutral-600 dark:border-opacity-30
-          md:w-10
-          ${char.length > 1 && "px-2 text-xs"}
+          ${char.length > 4 && "px-2 text-xs"}
+          ${char.length >= 4 ? `w-16`: "w-7 md:w-10"}
         `}
       >
-        {char}
+        {char.length > 1 && char === "BACK" ? "⌫" : char}
       </button>
     );
   });
