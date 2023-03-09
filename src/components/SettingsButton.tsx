@@ -11,7 +11,7 @@ interface Props {
 
 const SettingsButton = ({ onClick }: Props) => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
