@@ -91,6 +91,14 @@ const translations = {
   endingGuessDistribution: {
     "en": "GUESS DISTRIBUTION",
     "fi": "ARVAUSTEN JAKAUTUMINEN"
+  },
+  copiedToClipboard: {
+    "en": "Copied to clipboard",
+    "fi": "Kopioitu leikepöydälle"
+  },
+  nextWordRelease: {
+    "en": "Next word will be released in",
+    "fi": "Seuraava sana julkaistaan"
   }
 
   
