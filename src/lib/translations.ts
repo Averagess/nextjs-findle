@@ -57,8 +57,8 @@ const translations = {
     "fi": "Kuinka peli toimii?"
   },
   tutorialFirstParagraph: {
-    "en": "Every word must be an 5-letter long Finnish word",
-    "fi": "Jokainen sana täytyy olla oikea 5-kirjainta pitkä Suomalainen sana"
+    "en": "Every guess must be an 5-letter long Finnish word",
+    "fi": "Jokainen arvaus täytyy olla oikea 5-kirjainta pitkä Suomalainen sana"
   },
   tutorialSecondParagraph: {
     "en": "After guessing, game will show your answer, and shows how correct your guess was with colours.",
