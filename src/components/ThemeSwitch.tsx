@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import translations from "@/lib/translations";
 
+import lightIcon from "../images/light-icon.svg"
+import darkIcon from "../images/dark-icon.svg"
+import Image from "next/image";
+
 const ThemeSwitch = ({ locale }: { locale: "fi" | "en" }) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -12,7 +16,7 @@ const ThemeSwitch = ({ locale }: { locale: "fi" | "en" }) => {
 
   if (!mounted) return null;
 
-  const icon = theme === "dark" ? "🌙" : "☀️";
+  const icon = theme === "light" ? lightIcon : darkIcon;
 
   return (
     <div
@@ -26,7 +30,7 @@ const ThemeSwitch = ({ locale }: { locale: "fi" | "en" }) => {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       title={translations.themeTooltip[locale]}
     >
-      <h1>{icon}</h1>
+      <Image src={icon} width={24} height={24} alt="theme" />
     </div>
   );
 };
