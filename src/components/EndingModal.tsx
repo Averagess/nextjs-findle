@@ -51,14 +51,15 @@ const EndingModal = ({
 
   const safe = playerData?.games ?? {};
   const guessKeys = Object.keys(safe);
-  const latestGuess = guessKeys[guessKeys.length - 1] || 0;
+  const latestGuess = guessKeys[guessKeys.length - 1];
   const solvedDate = new Date(Number(latestGuess));
   const releaseDate = new Date(nextWordDateMS);
 
+  const releaseMS = releaseDate.getTime();
+  const solvedMS = solvedDate.getTime();
+  const hourDiff = (releaseMS - solvedMS) / 1000 / 60 / 60;
   const bool =
-    solvedDate.getDate() + 1 === releaseDate.getDate() &&
-    solvedDate.getMonth() === releaseDate.getMonth() &&
-    solvedDate.getFullYear() === releaseDate.getFullYear();
+    hourDiff < 24
 
   return (
     <div

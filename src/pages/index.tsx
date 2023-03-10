@@ -26,7 +26,7 @@ export const getServerSideProps = (context: NextPageContext) => {
   const newYearsEve = new Date(currYear, 0, 1);
 
   const currDate = new Date();
-  console.log(currDate)
+  console.log(currDate);
 
   const timeDiff = currDate.getTime() - newYearsEve.getTime();
   const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -44,12 +44,11 @@ export const getServerSideProps = (context: NextPageContext) => {
       0,
       0
     )
-  )
+  );
   const nextWordDateMS = nextWordDate.getTime();
 
-  console.log("nextWordDate in getServerSideProps: ", nextWordDate)
-  console.log("nextWordDateMS in getServerSideProps: ", nextWordDateMS)
-
+  console.log("nextWordDate in getServerSideProps: ", nextWordDate);
+  console.log("nextWordDateMS in getServerSideProps: ", nextWordDateMS);
 
   return {
     props: {
@@ -101,11 +100,11 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
     if (playerData) {
       const parsedData: PlayerData = JSON.parse(playerData);
       setPlayerData(parsedData);
-      if(!parsedData.tutorialSeen) {
+      if (!parsedData.tutorialSeen) {
         setTutorial(true);
-        setPlayerData({ ...parsedData, tutorialSeen: true })
+        setPlayerData({ ...parsedData, tutorialSeen: true });
         return;
-      } else if(Object.keys(parsedData.games).length === 0) return;
+      } else if (Object.keys(parsedData.games).length === 0) return;
 
       const gameKeys = Object.keys(parsedData.games);
       const latestGame = gameKeys[gameKeys.length - 1];
@@ -113,18 +112,24 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
       const solvedDate = new Date(Number(latestGame));
       const releaseDate = new Date(nextWordDateMS);
 
-      console.log(solvedDate)
-      console.log(releaseDate)
+      const solvedMS = solvedDate.getTime();
+      const releaseMS = releaseDate.getTime();
 
-      if (
-        solvedDate.getDate() + 1 === releaseDate.getDate() &&
-        solvedDate.getMonth() === releaseDate.getMonth() &&
-        solvedDate.getFullYear() === releaseDate.getFullYear()
-      ) {
+      const hourDiff = (releaseMS - solvedMS) / 1000 / 60 / 60;
+
+      console.log("hours between latest solved and release", hourDiff);
+
+      console.log("solvedDate", solvedDate);
+      console.log("releaseDate", releaseDate);
+
+      if (hourDiff < 24) {
         setGuesses(parsedData.games[Number(latestGame)].guesses);
         setGameOver(true);
       }
-    } else setPlayerData({ games: {}, tutorialSeen: false });
+    } else {
+      setTutorial(true);
+      setPlayerData({ games: {}, tutorialSeen: true });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -196,7 +201,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
             guesses,
           },
         },
-        tutorialSeen: parsed.tutorialSeen
+        tutorialSeen: parsed.tutorialSeen,
       };
       setPlayerData(data);
     }
@@ -230,7 +235,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
             draggable={false}
             pauseOnHover={false}
             closeButton={false}
-            style={{textAlign: "center"}}
+            style={{ textAlign: "center" }}
             theme={theme === "light" ? "light" : "dark"}
           />
         )}
@@ -242,12 +247,13 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
           <div
             className={`
             flex h-full w-full flex-col items-center place-self-center
-            sm:rounded-xl bg-gray-300
-            py-8 sm:shadow-neumorphism
-            dark:bg-neutral-800 sm:dark:shadow-neumorphism-dark
-            sm:h-max sm:w-[60%] md:w-[50%] lg:w-[40%]`}
+            bg-gray-300 py-8
+            dark:bg-neutral-800 sm:h-max
+            sm:w-[60%] sm:rounded-xl
+            sm:shadow-neumorphism sm:dark:shadow-neumorphism-dark md:w-[50%] lg:w-[40%]`}
           >
             <div>
+              <h1>{word}</h1>
               {PastGuesses}
               {guesses.length < 5 && (
                 <GuessContainer shakeInput={shouldShakeInput} chars={guess} />
