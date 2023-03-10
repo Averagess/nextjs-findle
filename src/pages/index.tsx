@@ -26,6 +26,7 @@ export const getServerSideProps = (context: NextPageContext) => {
   const newYearsEve = new Date(currYear, 0, 1);
 
   const currDate = new Date();
+  console.log(currDate)
 
   const timeDiff = currDate.getTime() - newYearsEve.getTime();
   const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -33,9 +34,10 @@ export const getServerSideProps = (context: NextPageContext) => {
   const randomWord = keys[diffDays];
   console.log("Locale in getServerSideProps: ", context.locale);
 
-  const nextWordDateMS = new Date(
-    currDate.getFullYear(),
-    currDate.getMonth(),
+  const nextWordDate = new Date(
+    Date.UTC(
+      currDate.getFullYear(),
+      currDate.getMonth(),
     currDate.getDate() + 1,
     0,
     0,
@@ -104,6 +106,9 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
 
       const solvedDate = new Date(Number(latestGame));
       const releaseDate = new Date(nextWordDateMS);
+
+      console.log(solvedDate)
+      console.log(releaseDate)
 
       if (
         solvedDate.getDate() + 1 === releaseDate.getDate() &&
