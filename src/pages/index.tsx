@@ -253,7 +253,6 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
             sm:shadow-neumorphism sm:dark:shadow-neumorphism-dark md:w-[50%] lg:w-[40%]`}
           >
             <div>
-              <h1>{word}</h1>
               {PastGuesses}
               {guesses.length < 5 && (
                 <GuessContainer shakeInput={shouldShakeInput} chars={guess} />
