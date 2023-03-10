@@ -23,8 +23,6 @@ const StatsButton = ({ locale, onClick}: Props) => {
 
   const icon = theme === "light" ? whiteLeaderboard : darkLeaderboard
 
-
-
   return (
     <div
       title={translations.statistics[locale].toLocaleLowerCase()}
