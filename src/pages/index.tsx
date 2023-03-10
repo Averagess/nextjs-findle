@@ -38,12 +38,18 @@ export const getServerSideProps = (context: NextPageContext) => {
     Date.UTC(
       currDate.getFullYear(),
       currDate.getMonth(),
-    currDate.getDate() + 1,
-    0,
-    0,
-    0,
-    0
-  ).getTime();
+      currDate.getDate(),
+      22,
+      0,
+      0,
+      0
+    )
+  )
+  const nextWordDateMS = nextWordDate.getTime();
+
+  console.log("nextWordDate in getServerSideProps: ", nextWordDate)
+  console.log("nextWordDateMS in getServerSideProps: ", nextWordDateMS)
+
 
   return {
     props: {
