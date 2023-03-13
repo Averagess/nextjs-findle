@@ -2,8 +2,8 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import IconDark from "../images/settingsDark.png";
-import IconLight from "../images/settingsLight.png";
+import IconDark from "@/images/settingsDark.png";
+import IconLight from "@/images/settingsLight.png";
 
 interface Props {
   onClick: () => void;
