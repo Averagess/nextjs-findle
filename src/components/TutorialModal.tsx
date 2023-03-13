@@ -4,11 +4,10 @@ import GuessContainer from "./GuessContainer";
 
 interface Props {
   toggleTutorial: () => void;
-  className?: string;
   locale: "fi" | "en";
 }
 
-const TutorialModal = ({ toggleTutorial, locale, className }: Props) => {
+const TutorialModal = ({ toggleTutorial, locale }: Props) => {
   return (
     <div
       className={`

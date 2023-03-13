@@ -3,11 +3,10 @@ import { PlayerData } from "@/pages";
 
 interface Props {
   playerData: PlayerData | null;
-  className?: string;
   locale: "fi" | "en";
 }
 
-const StatsContainer = ({ playerData, className, locale }: Props) => {
+const StatsContainer = ({ playerData, locale }: Props) => {
   const winPercentage = () => {
     if (playerData?.games) {
       const games = Object.values(playerData.games);

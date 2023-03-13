@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";

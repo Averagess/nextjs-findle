@@ -11,7 +11,7 @@ interface Props {
   onClick: () => void;
 }
 
-const StatsButton = ({ locale, onClick}: Props) => {
+const StatsButton = ({ locale, onClick }: Props) => {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 

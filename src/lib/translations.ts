@@ -1,8 +1,8 @@
 
 const translations = {
   wordNotFoundNoti : {
-    en: 'Word not found in wordlist',
-    fi: 'Sanaa ei ole listassa'
+    en: "Word not found in wordlist",
+    fi: "Sanaa ei ole listassa"
   },
   endingCorrectHeader: {
     en: "Correct!",
@@ -101,7 +101,7 @@ const translations = {
     "fi": "Seuraava sana julkaistaan"
   }
 
-  
+
 }
 
 export default translations;

@@ -174,8 +174,8 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
   const EmptyGuesses =
     guesses.length < 5
       ? Array.from({ length: 5 - guesses.length - 1 }, (_, i) => (
-          <GuessContainer key={i} />
-        ))
+        <GuessContainer key={i} />
+      ))
       : [];
 
   // Checking if the game should be over

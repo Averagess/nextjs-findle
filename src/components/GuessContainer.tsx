@@ -28,8 +28,8 @@ const GuessContainer = ({
       const flipType = isCorrect
         ? "flip-green"
         : isAlmost
-        ? "flip-orange"
-        : "flip-gray";
+          ? "flip-orange"
+          : "flip-gray";
       style.animation = `0.5s ${flipType} ${0.5 * (i + 1)}s ease-in both`;
     } else if (correctWord) {
       isCorrect = char === correctWord[i].toUpperCase();
@@ -48,12 +48,12 @@ const GuessContainer = ({
         dark:border-opacity-30
           dark:bg-opacity-60
           ${
-            isCorrect
-              ? "bg-green-500"
-              : isAlmost
-              ? "bg-orange-400"
-              : "bg-neutral-400 dark:bg-neutral-700"
-          }
+      isCorrect
+        ? "bg-green-500"
+        : isAlmost
+          ? "bg-orange-400"
+          : "bg-neutral-400 dark:bg-neutral-700"
+      }
           `}
       >
         <p className="text-3xl font-bold text-white">{char}</p>

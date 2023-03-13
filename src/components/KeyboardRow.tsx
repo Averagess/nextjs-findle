@@ -42,7 +42,7 @@ const KeyboardRow = ({
           font-semibold text-white
           active:bg-neutral-600 dark:border-opacity-30
           ${char.length > 4 && "px-2 text-xs"}
-          ${char.length >= 4 ? `w-16`: "w-7 md:w-10"}
+          ${char.length >= 4 ? "w-16": "w-7 md:w-10"}
         `}
       >
         {char.length > 1 && char === "BACK" ? "⌫" : char}

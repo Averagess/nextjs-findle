@@ -69,7 +69,7 @@ const EndingModal = ({
         rounded-xl bg-white p-10
         text-black dark:bg-neutral-800 dark:text-white
         md:w-[75vw] lg:w-[50vw] xl:w-[35vw]
-        overflow-y-auto        
+        overflow-y-auto
         "
     >
       <CloseButton
