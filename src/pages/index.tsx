@@ -1,15 +1,12 @@
 import { NextPageContext } from "next";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import dynamic from "next/dynamic";
 
-import GuessContainer from "@/components/GuessContainer";
-import Keyboard from "@/components/Keyboard";
-import Layout from "@/components/Layout";
-import Navbar from "@/components/NavBar";
+import { GuessContainer, Keyboard, Layout, Navbar } from "@/components";
 import translations from "@/lib/translations";
 import words from "@/lib/words";
 
