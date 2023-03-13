@@ -123,7 +123,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
       console.log("solvedDate", solvedDate);
       console.log("releaseDate", releaseDate);
 
-      if (hourDiff < 24) {
+      if (hourDiff < 24 && parsedData.games[Number(latestGame)].word === word) {
         setGuesses(parsedData.games[Number(latestGame)].guesses);
         setGameOver(true);
       }
