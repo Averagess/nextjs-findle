@@ -25,8 +25,9 @@ export const getServerSideProps = (context: NextPageContext) => {
   const currYear = new Date().getFullYear();
   const newYearsEve = new Date(currYear, 0, 1);
 
-  const currDate = new Date();
-  console.log(currDate);
+  const currDate = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "Europe/Helsinki" })
+  );
 
   const timeDiff = currDate.getTime() - newYearsEve.getTime();
   const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
