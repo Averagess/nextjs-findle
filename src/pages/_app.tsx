@@ -1,9 +1,10 @@
-import "@/styles/globals.css";
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
-import { Analytics } from '@vercel/analytics/react';
 import Head from "next/head";
+
+import "@/styles/globals.css";
 
 const poppins = Poppins({
   weight: ["400"],
