@@ -13,9 +13,9 @@ const TutorialButton = ({ onClick, locale }: Props) => {
         grid
         h-10 w-10 select-none
         place-items-center
-        rounded-full border-2 border-white dark:border-black
-      bg-gray-800 bg-opacity-25
-        text-3xl text-white hover:cursor-pointer
+        rounded-full border-2 border-white bg-gray-800
+      bg-opacity-25 text-3xl
+        text-white hover:cursor-pointer dark:border-black
       dark:bg-gray-500 dark:bg-opacity-25 dark:text-black `}
       title={translations.tutorialTooltip[locale]}
     >

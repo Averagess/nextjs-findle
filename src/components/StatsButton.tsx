@@ -17,11 +17,11 @@ const StatsButton = ({ locale, onClick }: Props) => {
 
   useEffect(() => {
     setMounted(true);
-  }, [])
+  }, []);
 
-  if(!mounted) return null
+  if (!mounted) return null;
 
-  const icon = theme === "light" ? whiteLeaderboard : darkLeaderboard
+  const icon = theme === "light" ? whiteLeaderboard : darkLeaderboard;
 
   return (
     <div
@@ -36,7 +36,12 @@ bg-opacity-25 text-3xl
   text-black hover:cursor-pointer dark:border-black
 dark:bg-gray-500 dark:bg-opacity-25 dark:text-white `}
     >
-      <Image src={icon} width={24} height={24} alt={translations.statistics[locale]} />
+      <Image
+        src={icon}
+        width={24}
+        height={24}
+        alt={translations.statistics[locale]}
+      />
     </div>
   );
 };

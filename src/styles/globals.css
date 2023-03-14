@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @keyframes flip-green {
   0% {
     transform: rotateY(0deg);
     @apply bg-neutral-700;
-    @apply bg-opacity-60
+    @apply bg-opacity-60;
   }
   50% {
     transform: rotateY(180deg);
@@ -22,7 +21,7 @@
   0% {
     transform: rotateY(0deg);
     @apply bg-neutral-700;
-    @apply bg-opacity-60
+    @apply bg-opacity-60;
   }
   50% {
     transform: rotateY(180deg);
@@ -37,7 +36,7 @@
   0% {
     transform: rotateY(0deg);
     @apply bg-neutral-600;
-    @apply bg-opacity-60
+    @apply bg-opacity-60;
   }
   50% {
     transform: rotateY(180deg);
@@ -85,6 +84,10 @@
 }
 
 @keyframes to-transparent {
-  0% { opacity : 1 }
-  100% { opacity : 0 }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

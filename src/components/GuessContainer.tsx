@@ -61,7 +61,11 @@ const GuessContainer = ({
     );
   });
 
-  return <div className={`flex ${shakeInput ? "animate-shake": ""}`}>{charBoxes}</div>;
+  return (
+    <div className={`flex ${shakeInput ? "animate-shake" : ""}`}>
+      {charBoxes}
+    </div>
+  );
 };
 
 export default GuessContainer;

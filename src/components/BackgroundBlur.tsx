@@ -5,7 +5,6 @@ interface Props {
 }
 
 const BackgroundBlur = ({ children, toggleBG, className }: Props) => {
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       toggleBG();
@@ -14,7 +13,10 @@ const BackgroundBlur = ({ children, toggleBG, className }: Props) => {
 
   return (
     <div className={`${className}`}>
-      <div onClick={handleClick} className="grid animate-bg-blur absolute inset-0 bg-black bg-opacity-60">
+      <div
+        onClick={handleClick}
+        className="absolute inset-0 grid animate-bg-blur bg-black bg-opacity-60"
+      >
         {children}
       </div>
     </div>

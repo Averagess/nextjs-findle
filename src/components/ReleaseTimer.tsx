@@ -11,13 +11,12 @@ const ReleaseTimer = ({ nextWordDateMS, locale }: Props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-
       setTimeLeft(nextWordDateMS - Date.now());
     }, 1000);
     return () => clearInterval(interval);
   });
 
-  const timeString = new Date(timeLeft).toISOString().slice(11, 19)
+  const timeString = new Date(timeLeft).toISOString().slice(11, 19);
 
   return (
     <div>

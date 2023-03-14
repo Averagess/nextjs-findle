@@ -19,7 +19,9 @@ const Navbar = ({ toggleTutorial, toggleStatistics, locale }: Props) => {
       text-black
       dark:border-gray-500 dark:bg-neutral-800 dark:text-blue-500"
     >
-      <h1 className="select-none self-start sm:self-center text-3xl font-semibold">Findle</h1>
+      <h1 className="select-none self-start text-3xl font-semibold sm:self-center">
+        Findle
+      </h1>
       <div className="absolute right-4 flex items-center gap-2">
         <StatsButton locale={locale} onClick={toggleStatistics} />
         <ThemeSwitch locale={locale} />
