@@ -172,8 +172,8 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
   ));
 
   const EmptyGuesses =
-    guesses.length < 5
-      ? Array.from({ length: 5 - guesses.length - 1 }, (_, i) => (
+    guesses.length < 6
+      ? Array.from({ length: 6 - guesses.length - 1 }, (_, i) => (
         <GuessContainer key={i} />
       ))
       : [];
@@ -181,7 +181,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
   // Checking if the game should be over
   if (
     !gameOver &&
-    (guesses.length === 5 || guesses[guesses.length - 1] === word)
+    (guesses.length === 6 || guesses[guesses.length - 1] === word)
   ) {
     console.log("game over");
     setGameOver(true);
@@ -252,7 +252,7 @@ export default function Home({ word, words, locale, nextWordDateMS }: Props) {
           >
             <div>
               {PastGuesses}
-              {guesses.length < 5 && (
+              {guesses.length < 6 && (
                 <GuessContainer shakeInput={shouldShakeInput} chars={guess} />
               )}
               {EmptyGuesses}
