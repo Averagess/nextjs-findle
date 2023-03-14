@@ -10,10 +10,10 @@ const LocaleSwitch = ({ locale }: { locale: "fi" | "en" }) => {
   return (
     <select
       className="
-          h-10 border-2 border-white bg-gray-800
-          bg-opacity-25 text-white dark:border-black
-          dark:bg-gray-500 dark:bg-opacity-25 dark:text-black
-          rounded-lg px-2 "
+          h-10 rounded-lg border-2 border-white
+          bg-gray-800 bg-opacity-25 px-2
+          text-white dark:border-black dark:bg-gray-500
+          dark:bg-opacity-25 dark:text-black "
       title={translations.localeSwitchTitle.en}
       onChange={handleChange}
       value={locale}

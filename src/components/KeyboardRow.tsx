@@ -35,14 +35,14 @@ const KeyboardRow = ({
         key={char}
         disabled={gameOver}
         className={`
-          md:h-15 h-12
-          min-w-fit
-          shrink-1 rounded-md border-2 border-white
-          bg-neutral-400 dark:bg-neutral-700 dark:bg-opacity-60
-          font-semibold text-white
+          md:h-15 shrink-1
+          h-12
+          min-w-fit rounded-md border-2 border-white
+          bg-neutral-400 font-semibold text-white
           active:bg-neutral-600 dark:border-opacity-30
+          dark:bg-neutral-700 dark:bg-opacity-60
           ${char.length > 4 && "px-2 text-xs"}
-          ${char.length >= 4 ? "w-16": "w-7 md:w-10"}
+          ${char.length >= 4 ? "w-16" : "w-7 md:w-10"}
         `}
       >
         {char.length > 1 && char === "BACK" ? "⌫" : char}

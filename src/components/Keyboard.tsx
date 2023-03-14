@@ -13,7 +13,7 @@ const Keyboard = ({
   guesses,
   correctWord,
   className,
-  gameOver
+  gameOver,
 }: Props) => {
   const correctChars: { [key: string]: string } = {};
   const almostChars: { [key: string]: string } = {};
@@ -35,10 +35,10 @@ const Keyboard = ({
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Å"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä"],
     ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "BACK"],
-  ]
+  ];
 
   return (
-    <div className={`flex flex-col w-full gap-1 p-1 ${className}`}>
+    <div className={`flex w-full flex-col gap-1 p-1 ${className}`}>
       {rows.map((row, i) => (
         <KeyboardRow
           key={i}

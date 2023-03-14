@@ -1,107 +1,104 @@
-
 const translations = {
-  wordNotFoundNoti : {
+  wordNotFoundNoti: {
     en: "Word not found in wordlist",
-    fi: "Sanaa ei ole listassa"
+    fi: "Sanaa ei ole listassa",
   },
   endingCorrectHeader: {
     en: "Correct!",
-    fi: "Oikein!"
+    fi: "Oikein!",
   },
   endingWrongHeader: {
     en: "Wrong answer.",
-    fi: "Väärin."
+    fi: "Väärin.",
   },
   endingSubHeader: {
     en: "The daily word was",
-    fi: "Päivän sana oli"
+    fi: "Päivän sana oli",
   },
   share: {
     en: "Share",
-    fi: "Jaa"
+    fi: "Jaa",
   },
   statistics: {
     en: "STATISTICS",
-    fi: "TILASTOJA"
+    fi: "TILASTOJA",
   },
   gamesPlayed: {
     en: "Played",
-    fi: "Pelattu"
+    fi: "Pelattu",
   },
   winPercentage: {
     en: "Win %",
-    fi: "Voitto %"
+    fi: "Voitto %",
   },
   winStreak: {
     en: "Win streak",
-    fi: "Voittoputki"
+    fi: "Voittoputki",
   },
   longestWinStreak: {
     en: "Longest streak",
-    fi: "Pisin voittoputki"
+    fi: "Pisin voittoputki",
   },
   showResultsButton: {
     en: "Show results",
-    fi: "Näytä tulokset"
+    fi: "Näytä tulokset",
   },
   tutorialTooltip: {
     en: "Tutorial",
-    fi: "Ohjeet"
+    fi: "Ohjeet",
   },
   themeTooltip: {
     en: "Change theme",
-    fi: "Vaihda teemaa"
+    fi: "Vaihda teemaa",
   },
   tutorialHeader: {
-    "en": "How the game works?",
-    "fi": "Kuinka peli toimii?"
+    en: "How the game works?",
+    fi: "Kuinka peli toimii?",
   },
   tutorialFirstParagraph: {
-    "en": "Every guess must be an 5-letter long Finnish word",
-    "fi": "Jokainen arvaus täytyy olla oikea 5-kirjainta pitkä Suomalainen sana"
+    en: "Every guess must be an 5-letter long Finnish word",
+    fi: "Jokainen arvaus täytyy olla oikea 5-kirjainta pitkä Suomalainen sana",
   },
   tutorialSecondParagraph: {
-    "en": "After guessing, game will show your answer, and shows how correct your guess was with colours.",
-    "fi": "Arvauksen jälkeen, peli näyttää arvauksen, ja näyttää väreillä miten oikeassa arvauksesi oli."
+    en: "After guessing, game will show your answer, and shows how correct your guess was with colours.",
+    fi: "Arvauksen jälkeen, peli näyttää arvauksen, ja näyttää väreillä miten oikeassa arvauksesi oli.",
   },
   tutorialExamples: {
-    "en": "Examples",
-    "fi": "Esimerkkejä"
+    en: "Examples",
+    fi: "Esimerkkejä",
   },
   tutorialExamplesWrong: {
-    "en": "This guess had no correct letters, Game tells if the letter is not in the word, if the letter stays gray after guessing.",
-    "fi": "Tässä arvauksessa ei ollut yhtäkään oikeinta kirjainta. Peli kertoo jos kirjainta ei ole sanassa, jos sana jää harmaaksi arvauksen jälkeen."
+    en: "This guess had no correct letters, Game tells if the letter is not in the word, if the letter stays gray after guessing.",
+    fi: "Tässä arvauksessa ei ollut yhtäkään oikeinta kirjainta. Peli kertoo jos kirjainta ei ole sanassa, jos sana jää harmaaksi arvauksen jälkeen.",
   },
   tutorialExamplesAlmost: {
-    "en": "This guess had one correct letter, but it was not in the correct place. Game tells it by making the letter orange.",
-    "fi": "Tässä arvauksessa on yksi oikea kirjain, mutta se ei ole oikeassa paikassa. Peli kertoo sen oranssilla värillä."
+    en: "This guess had one correct letter, but it was not in the correct place. Game tells it by making the letter orange.",
+    fi: "Tässä arvauksessa on yksi oikea kirjain, mutta se ei ole oikeassa paikassa. Peli kertoo sen oranssilla värillä.",
   },
   tutorialExamplesCorrect: {
-    "en": "This guess had one correct letter, and it was in the correct place. Game tells it by making the letter green.",
-    "fi": "Tässä arvauksessa on yksi oikea kirjain, ja se on oikeassa paikassa. Peli kertoo sen vihreällä värillä."
+    en: "This guess had one correct letter, and it was in the correct place. Game tells it by making the letter green.",
+    fi: "Tässä arvauksessa on yksi oikea kirjain, ja se on oikeassa paikassa. Peli kertoo sen vihreällä värillä.",
   },
   tutorialExamplesCorrectWord: {
-    "en": "This guess was correct. Game tells it by making the whole word green.",
-    "fi": "Tässä arvauksessa on kaikki kirjaimet oikein. Peli kertoo sen jos sana on kokonaan vihreä."
+    en: "This guess was correct. Game tells it by making the whole word green.",
+    fi: "Tässä arvauksessa on kaikki kirjaimet oikein. Peli kertoo sen jos sana on kokonaan vihreä.",
   },
   localeSwitchTitle: {
-    "en": "Change language",
-    "fi": "Vaihda kieltä"
+    en: "Change language",
+    fi: "Vaihda kieltä",
   },
   endingGuessDistribution: {
-    "en": "GUESS DISTRIBUTION",
-    "fi": "ARVAUSTEN JAKAUTUMINEN"
+    en: "GUESS DISTRIBUTION",
+    fi: "ARVAUSTEN JAKAUTUMINEN",
   },
   copiedToClipboard: {
-    "en": "Copied to clipboard",
-    "fi": "Kopioitu leikepöydälle"
+    en: "Copied to clipboard",
+    fi: "Kopioitu leikepöydälle",
   },
   nextWordRelease: {
-    "en": "Next word will be released in",
-    "fi": "Seuraava sana julkaistaan"
-  }
-
-
-}
+    en: "Next word will be released in",
+    fi: "Seuraava sana julkaistaan",
+  },
+};
 
 export default translations;

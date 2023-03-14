@@ -58,18 +58,17 @@ const EndingModal = ({
   const releaseMS = releaseDate.getTime();
   const solvedMS = solvedDate.getTime();
   const hourDiff = (releaseMS - solvedMS) / 1000 / 60 / 60;
-  const bool =
-    hourDiff < 24
+  const bool = hourDiff < 24;
 
   return (
     <div
       className="
         relative grid
-        w-screen h-[80vh] animate-rise place-self-center
-        rounded-xl bg-white p-10
-        text-black dark:bg-neutral-800 dark:text-white
-        md:w-[75vw] lg:w-[50vw] xl:w-[35vw]
-        overflow-y-auto
+        h-[80vh] w-screen animate-rise place-self-center
+        overflow-y-auto rounded-xl bg-white
+        p-10 text-black dark:bg-neutral-800
+        dark:text-white md:w-[75vw] lg:w-[50vw]
+        xl:w-[35vw]
         "
     >
       <CloseButton

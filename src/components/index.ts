@@ -15,7 +15,6 @@ import ThemeSwitch from "./ThemeSwitch";
 import TutorialButton from "./TutorialButton";
 import TutorialModal from "./TutorialModal";
 
-
 export {
   BackgroundBlur,
   CloseButton,

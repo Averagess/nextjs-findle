@@ -10,15 +10,13 @@ const StatsContainer = ({ playerData, locale }: Props) => {
   const winPercentage = () => {
     if (playerData?.games) {
       const games = Object.values(playerData.games);
-      if(!games.length) return 0;
+      if (!games.length) return 0;
       const wins = games.filter(
         (game) => game.guesses[game.guesses.length - 1] === game.word
       ).length;
       return Math.round((wins / games.length) * 100);
-    }
-    else return 0;
+    } else return 0;
   };
-
 
   const currentStreak = () => {
     if (playerData?.games) {
@@ -108,7 +106,9 @@ const StatsContainer = ({ playerData, locale }: Props) => {
         </div>
       </div>
       <hr className="my-5" />
-      <h2 className="font-semibold">{translations.endingGuessDistribution[locale]}</h2>
+      <h2 className="font-semibold">
+        {translations.endingGuessDistribution[locale]}
+      </h2>
       <div className="flex flex-col gap-2">
         {Object.keys(guessDistributions).map((key, index) => {
           return (
