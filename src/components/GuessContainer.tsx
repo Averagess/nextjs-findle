@@ -45,14 +45,14 @@ const GuessContainer = ({
           h-12 w-12
           place-items-center rounded-md
           border-2 border-white
-        dark:border-opacity-30
+          dark:border-opacity-30
           dark:bg-opacity-60
           ${
       isCorrect
         ? "bg-green-500"
         : isAlmost
           ? "bg-orange-400"
-          : "bg-neutral-400 dark:bg-neutral-700"
+          : "bg-neutral-500 dark:bg-neutral-500"
       }
           `}
       >
